@@ -21,6 +21,17 @@ function GameManager(options, InputManager, Actuator, socket) {
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
+  
+  this.inputManager.on('run', function() {
+    if (this.running) {
+      this.running = false;
+      this.actuator.setRunButton('Auto-run');
+    } else {
+      this.running = true;
+      this.run()
+      this.actuator.setRunButton('Stop');
+    }
+  }.bind(this));
 
   this.setup();
 }
