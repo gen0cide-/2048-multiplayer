@@ -277,3 +277,16 @@ GameManager.prototype.tileMatchesAvailable = function () {
 GameManager.prototype.positionsEqual = function (first, second) {
   return first.x === second.x && first.y === second.y;
 };
+
+// moves continuously until game is over
+GameManager.prototype.run = function() {
+  var best = this.ai.getBest();
+  this.move(best.move);
+  var timeout = animationDelay;
+  if (this.running && !this.over && !this.won) {
+    var self = this;
+    setTimeout(function(){
+      self.run();
+    }, timeout);
+  }
+}
