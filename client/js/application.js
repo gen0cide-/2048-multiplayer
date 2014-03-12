@@ -1,3 +1,5 @@
+minSearchTime = 100;
+
 document.addEventListener("DOMContentLoaded", function () {
   	var waitingInterval;
   	var sockjs_url = 'http://2048.stolarsky.com:3000/game/sockets', sockjs, multiplexer;
